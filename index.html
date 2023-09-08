@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Editor.js DEMO</title>
   </head>
 <style>
 #editorjs {
   height: 350px;
   overflow: scroll; 
 }
-#view {
+#view1 {
   height: 350px;
   overflow: scroll; 
 }
@@ -23,9 +23,15 @@
 </style>
   <body>
     <div id="editorjs"></div>
-    <button  type="button" >SAVE</button>
-    <textarea></textarea>
-    <div id="view"></div>
+    <div>
+    <button  type="button" id="save" >SAVE</button>
+    <textarea cols="120" rows="10"></textarea>
+    </div>
+    <hr>
+    <button  type="button" id="view1_exec" >VIEW1</button>
+    <div id="view1"></div>
+    <button  type="button" id="view2_exec" >VIEW2</button>
+    <hr>
     <div id="view2"></div>
     <script type="module" src="/main.js"></script>
   </body>
