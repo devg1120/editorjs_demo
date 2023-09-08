@@ -21,6 +21,64 @@ import {parser} from 'editorjs-viewer'
 
 // https://github.com/miadabdi/editorjs-parser
 import edjsParser  from 'editorjs-parser';
+let json_data2 =
+{
+	"time": 1694155961439,
+	"blocks": [
+		{
+			"id": "oUq2g_tl8y",
+			"type": "header",
+			"data": {
+				"text": "Editor.js",
+				"level": 2
+			}
+		},
+		{
+			"id": "zbGZFPM-iI",
+			"type": "paragraph",
+			"data": {
+				"text": "Hey. M<font style=\"color: rgb(236, 120, 120);\">eet the new Ed</font>itor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of co<font style=\"color: rgb(0, 188, 212);\">nnection a</font>nd configuration."
+			}
+		},
+		{
+			"id": "qYIGsjS5rt",
+			"type": "header",
+			"data": {
+				"text": "Key features",
+				"level": 3
+			}
+		},
+		{
+			"id": "XV87kJS_H1",
+			"type": "list",
+			"data": {
+				"style": "unordered",
+				"items": [
+					"It is a block-styled editor",
+					"It returns clean data output in JSON",
+					"Designed to be extendable and pluggable with a simple API"
+				]
+			}
+		},
+		{
+			"id": "AOulAjL8XM",
+			"type": "header",
+			"data": {
+				"text": "What does it mean «block-styled editor»",
+				"level": 3
+			}
+		},
+		{
+			"id": "cyZjplMOZ0",
+			"type": "paragraph",
+			"data": {
+				"text": "Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor's Core."
+			}
+		}
+	],
+	"version": "2.28.0"
+};
+
 
 let json_data = 
 {
@@ -118,8 +176,17 @@ const editor = new EditorJS({
     },
   }, 
 
- data: json_data,
+ //data: json_data,
+ data: json_data2,
 })
+
+document.querySelector("button").onclick = ()=> {
+	editor.save().then((outputData) => {
+		document.querySelector("textarea").value = JSON.stringify(outputData,null,"\t")
+	}).catch((error) => {
+		console.log('Saving failed: ', error)
+	});
+}
 
 
 // define custom configuration
@@ -149,7 +216,7 @@ const conf = {
     }
 }
 
-const result = parser.toHTML(json_data.blocks , conf)
+const result = parser.toHTML(json_data2.blocks , conf)
 
 document.querySelector('#view').innerHTML = result;
 
@@ -158,7 +225,7 @@ document.querySelector('#view').innerHTML = result;
 const parser2 = new edjsParser(undefined, undefined);
 
 //const result2 = parser2.parse(json_data.blocks )
-const result2 = parser2.parse(json_data )
+const result2 = parser2.parse(json_data2 )
 
 document.querySelector('#view2').innerHTML = result2;
 
